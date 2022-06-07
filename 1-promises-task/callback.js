@@ -4,7 +4,10 @@ function getData(callBack) {
     req.open('GET', "https://jsonplaceholder.typicode.com/users");
     req.onload = function() {
       if (req.status == 200) {
-        callBack(this.responseText);
+        const data = JSON.parse(this.responseText) 
+        data.forEach(user => {
+          callBack(user);
+        });
       } else {
         callBack("Error: " + req.status);
       }
@@ -13,13 +16,10 @@ function getData(callBack) {
   }
 
 function printData(data){
-    const users = JSON.parse(data)
-    users.forEach(user => {
-        console.log(user)
-    })
-
+    console.log(data)
 }
-  getData(printData);
+
+getData(printData);
 
 
 
