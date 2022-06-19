@@ -10,8 +10,6 @@ const btnViewNotes = document.getElementById("btnViewNotes")
 
 btnCreateDB.addEventListener("click", ()=>{
     createDB('storeDatabase','1')
-    console.log(storeProducts)
-
 })
 btnAddNote.addEventListener("click", ()=>{
     addProductToCart({
@@ -23,7 +21,7 @@ btnAddNote.addEventListener("click", ()=>{
 
 }) 
 btnViewNotes.addEventListener("click", ()=>{
-    console.log(getProduct(1))
+    getProduct(2)
 })
 
 function createDB (dbName,dbVersion){
@@ -54,23 +52,23 @@ function createDB (dbName,dbVersion){
 
 }
 
-function addProductToCart (Product){
-    let transactions = db.transaction("cartProducts","readwrite")
+function addProduct (Product , dbObjectStore){
+    let transactions = db.transaction(dbObjectStore,"readwrite")
     transactions.onerror = e=> console.log(e.target.error)
-    const cartProductsObjectStore = transactions.objectStore('cartProducts')
+    const cartProductsObjectStore = transactions.objectStore(dbObjectStore)
     cartProductsObjectStore.add(Product)
     
 }
 
- function getProduct (productID ){
-    const transactions =  db.transaction('products','readonly')
+ function getProduct (productID  , dbObjectStore ){
+    const transactions =  db.transaction(dbObjectStore,'readonly')
     transactions.onerror = e => {console.log(e.target.error)}
-    const productsObjectStore =  transactions.objectStore('products')
+    const productsObjectStore =  transactions.objectStore(dbObjectStore)
     const getProduct = productsObjectStore.get(productID)
     getProduct.onerror = e =>console.log(e.target.error)
     getProduct.onsuccess = e =>{
     const viewedProduct = e.target.result
-   addProductToCart( viewedProduct)
+   addProduct( viewedProduct,'productsCart')
    }
 }
 

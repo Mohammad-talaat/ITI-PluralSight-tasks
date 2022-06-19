@@ -1,0 +1,26 @@
+[
+    {
+        "productID":1,
+        "name":"shampoo",
+        "price":23,
+        "imageURL":""
+    },
+    {
+        "productID":2,
+        "name":"TV",
+        "price":3500,
+        "imageURL":""
+    },
+    {
+        "productID":3,
+        "name":"IPHONE 14 PRO MAX PLUS ULTRA ",
+        "price":2000,
+        "imageURL":""
+    },
+    {
+        "productID":4,
+        "name":"LAPTOP 20",
+        "price":23524,
+        "imageURL":""
+    }
+]
