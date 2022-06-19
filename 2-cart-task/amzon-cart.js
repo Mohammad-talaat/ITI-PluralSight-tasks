@@ -1,14 +1,8 @@
-let db = null
-let product = [
-    {
-        productID:1,
-        productName:'product-1'
-    },
-    {
-        productID:2,
-        productName:'product-2'
-    }
-]
+let db,storeProducts ;
+const data = fetch('productsDB.json')
+.then( data => data.json())
+.then(data => storeProducts=data )
+
 
 const btnCreateDB = document.getElementById("btnCreateDB")
 const btnAddNote = document.getElementById("btnAddNote")
@@ -16,13 +10,21 @@ const btnViewNotes = document.getElementById("btnViewNotes")
 
 btnCreateDB.addEventListener("click", ()=>{
     createDB('storeDatabase','1')
+    console.log(storeProducts)
 
 })
 btnAddNote.addEventListener("click", ()=>{
-    addProductToCart(product)
+    addProductToCart({
+    productID:6,
+    name:"IPHONE 16 ",
+        price:2000,
+        imageURL:""
+    })
 
 }) 
-// btnViewNotes.addEventListener("click", viewNotes)
+btnViewNotes.addEventListener("click", ()=>{
+    console.log(getProduct(1))
+})
 
 function createDB (dbName,dbVersion){
 
@@ -38,7 +40,14 @@ function createDB (dbName,dbVersion){
 
     request.onsuccess = e => {
         db = e.target.result
-        console.log(db)
+        
+        let transactions = db.transaction("products","readwrite")
+        transactions.onerror = e=> console.log(e.target.error)
+        const productsObjectStore = transactions.objectStore('products')
+        storeProducts.forEach(product =>{
+    
+            productsObjectStore.add(product)
+        })  
     }
 
     request.onerror = e => console.log(`This error is due to ${e.target.error}`)
@@ -48,18 +57,21 @@ function createDB (dbName,dbVersion){
 function addProductToCart (Product){
     let transactions = db.transaction("cartProducts","readwrite")
     transactions.onerror = e=> console.log(e.target.error)
-    const cartProducts = transactions.objectStore('cartProducts')
-    Product.forEach(product =>{
-
-        cartProducts.add(product)
-    })
+    const cartProductsObjectStore = transactions.objectStore('cartProducts')
+    cartProductsObjectStore.add(Product)
+    
 }
 
-function getProduct (productID){
-    const transactions = db.transaction('products','readonly')
+ function getProduct (productID ){
+    const transactions =  db.transaction('products','readonly')
     transactions.onerror = e => {console.log(e.target.error)}
-    const product = transactions.objectStore('products')
-    product.get(productID)
+    const productsObjectStore =  transactions.objectStore('products')
+    const getProduct = productsObjectStore.get(productID)
+    getProduct.onerror = e =>console.log(e.target.error)
+    getProduct.onsuccess = e =>{
+    const viewedProduct = e.target.result
+   addProductToCart( viewedProduct)
+   }
 }
 
 function removeProductFromCart(productID){
