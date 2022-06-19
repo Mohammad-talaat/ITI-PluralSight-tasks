@@ -1,30 +1,13 @@
+
 let db,storeProducts ;
 const data = fetch('productsDB.json')
 .then( data => data.json())
-.then(data => storeProducts=data )
+.then(data => storeProducts = data )
 
 
-const btnCreateDB = document.getElementById("btnCreateDB")
-const btnAddNote = document.getElementById("btnAddNote")
-const btnViewNotes = document.getElementById("btnViewNotes")
 
-btnCreateDB.addEventListener("click", ()=>{
-    createDB('storeDatabase','1')
-})
-btnAddNote.addEventListener("click", ()=>{
-    addProductToCart({
-    productID:6,
-    name:"IPHONE 16 ",
-        price:2000,
-        imageURL:""
-    })
 
-}) 
-btnViewNotes.addEventListener("click", ()=>{
-    getProduct(2)
-})
-
-function createDB (dbName,dbVersion){
+ export function createDB (dbName,dbVersion){
 
     const request = indexedDB.open(dbName,dbVersion);
 
@@ -46,36 +29,51 @@ function createDB (dbName,dbVersion){
     
             productsObjectStore.add(product)
         })  
+
+        showAllProducts('products')
     }
 
     request.onerror = e => console.log(`This error is due to ${e.target.error}`)
 
 }
 
-function addProduct (Product , dbObjectStore){
-    let transactions = db.transaction(dbObjectStore,"readwrite")
+function addProductToCart (Product){
+    let transactions = db.transaction('cartProducts',"readwrite")
     transactions.onerror = e=> console.log(e.target.error)
-    const cartProductsObjectStore = transactions.objectStore(dbObjectStore)
+    const cartProductsObjectStore = transactions.objectStore("cartProducts")
     cartProductsObjectStore.add(Product)
     
 }
 
- function getProduct (productID  , dbObjectStore ){
-    const transactions =  db.transaction(dbObjectStore,'readonly')
+ function get_addProduct (productID){
+    const transactions =  db.transaction("products",'readonly')
     transactions.onerror = e => {console.log(e.target.error)}
-    const productsObjectStore =  transactions.objectStore(dbObjectStore)
+    const productsObjectStore =  transactions.objectStore("products")
     const getProduct = productsObjectStore.get(productID)
     getProduct.onerror = e =>console.log(e.target.error)
     getProduct.onsuccess = e =>{
     const viewedProduct = e.target.result
-   addProduct( viewedProduct,'productsCart')
+    addProductToCart(viewedProduct)
    }
 }
 
-function removeProductFromCart(productID){
+ function removeProductFromCart(productID){
     const transactions = db.transaction('cartProducts','readwrite')
     transactions.onerror = e=> {console.log(e.target.error)}
     const cartProducts = transactions.objectStore('cartProducts')
     cartProducts.delete(productID)
+}
+
+function showAllProducts (dbStore){
+    const transactions = db.transaction(dbStore,'readonly') 
+    const dbObjectStore = transactions.objectStore(dbStore)
+    const request = dbObjectStore.openCursor()
+    request.onsuccess = e => {
+        const cursor = e.target.result
+        if (cursor){
+            console.log(cursor.value)
+            cursor.continue();
+        }
+    }
 }
 
