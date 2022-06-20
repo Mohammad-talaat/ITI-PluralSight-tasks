@@ -1,21 +1,19 @@
+let db,storeProducts;
+// db --> global variable to store the result of the different events of the indexedDB
 
-let db,storeProducts ;
-const data = fetch('productsDB.json')
-.then( data => data.json())
-.then(data => storeProducts = data )
+ fetch('./productsDB.json')
+.then(res => res.json())
+.then(json => storeProducts = json)
+    
 
 
-
-
- export function createDB (dbName,dbVersion){
-
+ function createDB (dbName,dbVersion){
     const request = indexedDB.open(dbName,dbVersion);
 
     request.onupgradeneeded = e => {
         db = e.target.result
-        
-        db.createObjectStore('products',{keyPath:'productID'})
-        db.createObjectStore('cartProducts',{keyPath:'productID'})
+        db.createObjectStore('products',{keyPath:'id'})
+        db.createObjectStore('cartProducts',{keyPath:'id'})
         
     }
 
@@ -46,17 +44,17 @@ function addProductToCart (Product){
 }
 
  function get_addProduct (productID){
-    const transactions =  db.transaction("products",'readonly')
+    const transactions =  db.transaction('products','readwrite')
     transactions.onerror = e => {console.log(e.target.error)}
-    const productsObjectStore =  transactions.objectStore("products")
+    const productsObjectStore =  transactions.objectStore('products')
     const getProduct = productsObjectStore.get(productID)
     getProduct.onerror = e =>console.log(e.target.error)
     getProduct.onsuccess = e =>{
     const viewedProduct = e.target.result
+    console.log(viewedProduct)
     addProductToCart(viewedProduct)
    }
 }
-
  function removeProductFromCart(productID){
     const transactions = db.transaction('cartProducts','readwrite')
     transactions.onerror = e=> {console.log(e.target.error)}
@@ -76,4 +74,6 @@ function showAllProducts (dbStore){
         }
     }
 }
+
+
 
