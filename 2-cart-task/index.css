@@ -1,1 +1,26 @@
-body{margin: 0;padding: 0;}
+body{margin: 0;padding: 0;
+background-color: bisque;}
+
+#logo{
+    max-width: 60px;
+    border-radius: 15px;
+}
+
+
+#cartItemCounter{
+    background-color: orange;
+    border-radius: 50px;
+    width: 20px;
+    padding-left: 5px; 
+    position: relative;
+    bottom: 10px;
+}
+#cart{
+    display: flex;
+    align-content: center;
+}
+#productsHeader{
+    display:flex;
+    justify-content: center;
+    margin: 20px;
+}

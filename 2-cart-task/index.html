@@ -13,31 +13,24 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
+              <a style='display:flex;'class="navbar-brand" href="#">
+                <img style='margin-right: 10px;'id="logo"src="./assets/Logo.png">
+                <h3 style="align-self: center;">Mesh Amazon</h3>
+              </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
+                    <a class="nav-link" id="cart"href="cart.html">
+                      <div>Cart</div>
+                      <i style="align-self: center;" class="fa-solid fa-cart-shopping"></i>
+                      <div id="cartItemCounter">1</div>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                   </li>
                 </ul>
                 <form class="d-flex">
@@ -48,8 +41,86 @@
             </div>
           </nav>
     </header>
-    <main></main>
+    <main>
+      <h1 id="productsHeader" >Store Products</h1>
+      
+     
+
+      <div class="container">
+        <div class="row row-cols-1" style="justify-content: center;">
+
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+          <div class="card col p-3 m-2" style="width: 16rem;">
+            <img src="assets/search-icon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+          </div>
+          
+
+         
+
+
+        </div>
+      </div>
+    </main>
     <footer></footer>
+    <script src="https://kit.fontawesome.com/f2a643ac21.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script   src="display_products.js" ></script>
     <!-- <script   src="db-controller.js" ></script> -->
