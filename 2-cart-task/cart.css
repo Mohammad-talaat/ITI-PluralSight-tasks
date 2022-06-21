@@ -1,0 +1,30 @@
+
+
+#cartItemCounter{
+    background-color: orange;
+    border-radius: 50px;
+    width: 20px;
+    padding-left: 5px; 
+    position: relative;
+    bottom: 10px;
+}
+#cart{
+    display: flex;
+    align-content: center;
+}
+
+#priceHeading{
+    display: flex;
+    justify-content: end;
+    margin-right:10px
+}
+hr{
+    position: relative;
+    top: -10px;
+}
+
+#priceContainer{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
