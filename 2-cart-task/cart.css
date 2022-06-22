@@ -17,3 +17,7 @@ hr{
     top: 12px;
     right: 10px;
 }
+#totalPriceContainer{
+    flex-grow: 1;
+    max-height:250px;
+}
