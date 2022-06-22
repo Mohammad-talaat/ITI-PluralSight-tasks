@@ -5,7 +5,18 @@ background-color: bisque;}
     max-width: 60px;
     border-radius: 15px;
 }
-
+#cartItemCounter{
+    background-color: orange;
+    border-radius: 50px;
+    width: 20px;
+    padding-left: 5px; 
+    position: relative;
+    bottom: 10px;
+}
+#cart{
+    display: flex;
+    align-content: center;
+}
 #productsHeader{
     display:flex;
     justify-content: center;
@@ -16,15 +27,3 @@ background-color: bisque;}
     
 }
 
-<<<<<<< HEAD
-=======
-#priceHeading{
-    display: flex;
-    justify-content: end;
-    margin-right:10px
-}
-hr{
-    position: relative;
-    top: -10px;
-}
->>>>>>> d17715d46246dbf2819196f4f718f5e348104b46
