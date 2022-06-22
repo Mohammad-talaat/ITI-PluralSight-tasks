@@ -16,3 +16,15 @@ background-color: bisque;}
     
 }
 
+<<<<<<< HEAD
+=======
+#priceHeading{
+    display: flex;
+    justify-content: end;
+    margin-right:10px
+}
+hr{
+    position: relative;
+    top: -10px;
+}
+>>>>>>> d17715d46246dbf2819196f4f718f5e348104b46
