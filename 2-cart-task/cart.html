@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="index.css">
     <title>Cart</title>
@@ -44,35 +43,38 @@
     </header>
     <main>
       
-     
-
       <div class="container-fluid ">
         <div class="row   m-2" style="justify-content: start;">
-          <div class="m-1 bg-white p-3 col-8" >
+          <div class="m-1 bg-white p-3 col-8 " >
             <h1>Shopping Cart</h1>
             <h4 id="priceHeading">Price</h4>
             <hr>
-            <!-- start of items cards -->
-            <div class="card mb-3" style="border: 1px solid black; " >
-              <div class="row g-0">
-                <div class="col-md-4 p-3">
-                  <img src="assets/search-icon.png" class="img-fluid rounded-start" >
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h5 id="priceContainer">
-                      <span>EGP 214</span>
-                    </h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                   
+            <div class="cartItemsContainer">
+              <!-- start of items cards -->
+              <div class="card mb-3" style="border: 1px solid black; " >
+                <div class="row g-0">
+                  <div class="col-md-4 p-3" style="display: flex;">  
+                    <i style='align-self:flex-start;' class="fa-solid fa-trash "></i>
+                    <img src="assets/search-icon.png" class="img-fluid rounded-start" >
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <h5 id="priceContainer">
+                        <span>EGP 214</span>
+                      </h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      
+                      
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- end of items cards -->
-            
+              <!-- end of items cards -->
+              </div>
+              
           </div>
 
             <!-- start of total price container -->
@@ -84,14 +86,14 @@
                 <span class="card-text">
                   Add EGP 250.00 of eligible items to your order to qualify for FREE Shipping.</span>
                   <div class="mt-5" style="justify-content:center">
-                    <h5>Sub-Total: EGP 124</h5>
+                    <h5 class="subTotalPrice"></h5>
                     <button type="button" class="col-12 btn btn-warning">Proceed to Checkout</button>
-                   
+                    
                   </div>
                 </div>
             </div>
             <!-- end   of total price container -->
-         
+            
           
         </div>
       </div>
@@ -103,8 +105,8 @@
     </footer>
     <script src="https://kit.fontawesome.com/f2a643ac21.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script   src="display_products.js" ></script>
+    <!-- <script   src="display_products.js" ></script> -->
     <!-- <script   src="db-controller.js" ></script> -->
-    <!-- <script   src="cart.js" ></script> -->
+    <script src="cart.js"></script>
 </body>
 </html>

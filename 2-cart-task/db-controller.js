@@ -32,7 +32,7 @@ let db,storeProducts;
     }
 
     request.onerror = e => console.log(`This error is due to ${e.target.error}`)
-
+    request.close()
 }
 
 function addProductToCart (Product){
