@@ -1,11 +1,11 @@
 const cartItemsContainer = document.getElementsByClassName('cartItemsContainer')[0]
+const cartCounter = document.getElementById('cartCounter')
 const subTotalPrice = document.getElementsByClassName('subTotalPrice')[0]
+
 let totalPrice = 0;
 cartItemsContainer.innerHTML = ''
 async function displayCartProducts(){
     connectDataBase('Online Store',1);
-    
-    
 }
 
 function connectDataBase(dbName,dbVersion){
@@ -30,6 +30,7 @@ function removeProductFromCart(productID){
 }
 
 function showAllProducts (dbStore){
+  let cartProductsCounter = 0
     const transactions = db.transaction(dbStore,'readonly') 
     const dbObjectStore = transactions.objectStore(dbStore)
     const request = dbObjectStore.openCursor()
@@ -63,15 +64,17 @@ function showAllProducts (dbStore){
               <!-- end of items cards -->
     `
         totalPrice += Math.round(product.price * 18)
+        ++cartProductsCounter
             cursor.continue();
         } 
         subTotalPrice.innerHTML = `Sub-Total: EGP ${totalPrice}`
         const deleteProduct = document.getElementsByClassName('deleteProduct')
+        cartCounter.innerHTML = cartProductsCounter
         for (const product of deleteProduct){
           product.addEventListener('click',(e)=>{
             const deletedProduct = e.target.parentElement.childNodes[3].innerHTML
             console.log(deletedProduct)
-            removeProductFromCart(parseInt(deletedProduct))
+            removeProductFromCart(parseInt(deletedProduct))          
             location.reload()
           })
         }
