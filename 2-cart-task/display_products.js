@@ -1,7 +1,6 @@
 
 async function fetchData(){
-    let db = null,
-    cartCounter= 0;
+   
     createDB('Online Store',1);
 
     const displayedItemContainer = document.querySelector('.displayedItemContainer')
@@ -38,7 +37,7 @@ async function fetchData(){
         console.log(products.find(el => el.id == productID ))
         let product = (products.find(el => el.id == productID ))
         addProductToCart(product)
-        alert("Product is added to the cart")
+        alert("Add product to the cart")
         })
     }
 
@@ -65,49 +64,11 @@ function createDB (dbName,dbVersion){
 
 function addProductToCart (Product){
     let transactions = db.transaction('cartProducts',"readwrite")
-    transactions.onerror = e=> console.log(e.target.error)
+    transactions.onerror = e=> {alert('Product already exists in the cart');console.log(e.target.error)}
     const cartProductsObjectStore = transactions.objectStore("cartProducts")
     cartProductsObjectStore.add(Product)
     
 }
 
- function get_addProduct (productID){
-    const transactions =  db.transaction('cartProducts','readwrite')
-    transactions.onerror = e => {console.log(e.target.error)}
-    const productsObjectStore =  transactions.objectStore('products')
-    const getProduct = productsObjectStore.get(productID)
-    getProduct.onerror = e =>console.log(e.target.error)
-    getProduct.onsuccess = e =>{
-    const viewedProduct = e.target.result
-    console.log(viewedProduct)
-    addProductToCart(viewedProduct)
-   }
-}
 
-// function get_addProduct (productID){
-//     const transactions =  db.transaction('cartProducts','readwrite')
-//     transactions.onerror = e => {console.log(e.target.error)}
-//     const productsObjectStore =  transactions.objectStore('products')
-//     const getProduct = productsObjectStore.get(productID)
-//     if(getProduct){
-//         getProduct.onerror = e =>console.log(e.target.error)
-//         cartCounter = 0
 
-//     }else if(!getProduct){
-//         getProduct.onsuccess = e =>{
-            
-//         const viewedProduct = e.target.result
-//         ++cartCounter
-//         console.log(viewedProduct)
-//         addProductToCart(viewedProduct)
-//         }
-//     }
-// }
-
-// function addProductToCart (Product){
-//     let transactions = db.transaction('cartProducts',"readwrite")
-//     transactions.onerror = e=> console.log(e.target.error)
-//     const cartProductsObjectStore = transactions.objectStore("cartProducts")
-//     cartProductsObjectStore.add(Product)
-    
-// }
