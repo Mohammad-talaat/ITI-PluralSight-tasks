@@ -73,9 +73,19 @@ function showAllProducts (dbStore){
         for (const product of deleteProduct){
           product.addEventListener('click',(e)=>{
             const deletedProductId = e.target.parentElement.childNodes[3].innerHTML
-            const deletedProduct = e.target.parentElement.parentElement.parentElement.remove()
-            removeProductFromCart(parseInt(deletedProductId))          
+            e.target.parentElement.parentElement.parentElement.remove()
+            removeProductFromCart(parseInt(deletedProductId))
+            // try to count the db index in the cartProducts object store 
+            // cartCounter.innerHTML = cartProductsCounter-- 
             // location.reload()
+            let  transaction = db.transaction('cartProducts', 'readonly');
+            var objectStore = transaction.objectStore('cartProducts');
+            var countRequest = objectStore.count();
+            countRequest.onsuccess = function() {
+              console.log(countRequest.result);
+              cartCounter.innerHTML = countRequest.result
+
+}
           })
         }
 

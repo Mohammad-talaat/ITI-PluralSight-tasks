@@ -1,6 +1,6 @@
 
 async function fetchData(){
-   
+   const cartCounter = document.getElementById('cartCounter')
     createDB('Online Store',1);
 
     const displayedItemContainer = document.querySelector('.displayedItemContainer')
@@ -38,6 +38,12 @@ async function fetchData(){
         let product = (products.find(el => el.id == productID ))
         addProductToCart(product)
         alert("Add product to the cart")
+        let  transaction = db.transaction('cartProducts', 'readonly');
+            var objectStore = transaction.objectStore('cartProducts');
+            var countRequest = objectStore.count();
+            countRequest.onsuccess = function() {
+              console.log(countRequest.result);
+              cartCounter.innerHTML = countRequest.result}
         })
     }
 
