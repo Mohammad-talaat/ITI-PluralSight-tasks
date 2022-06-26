@@ -72,10 +72,10 @@ function showAllProducts (dbStore){
         cartCounter.innerHTML = cartProductsCounter
         for (const product of deleteProduct){
           product.addEventListener('click',(e)=>{
-            const deletedProduct = e.target.parentElement.childNodes[3].innerHTML
-            console.log(deletedProduct)
-            removeProductFromCart(parseInt(deletedProduct))          
-            location.reload()
+            const deletedProductId = e.target.parentElement.childNodes[3].innerHTML
+            const deletedProduct = e.target.parentElement.parentElement.parentElement.remove()
+            removeProductFromCart(parseInt(deletedProductId))          
+            // location.reload()
           })
         }
 
