@@ -51,8 +51,8 @@ function showAllProducts (dbStore){
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title col-9">${product.title}</h5>
-                      <h5 id="priceContainer">
-                        <span>EGP ${Math.round(product.price * 18)}</span>
+                      <h5 class="priceContainer">
+                        <span class='Price'>EGP ${Math.round(product.price * 18)}</span>
                       </h5>
                       <p class="card-text">${product.description}</p>
                       
@@ -73,23 +73,21 @@ function showAllProducts (dbStore){
         for (const product of deleteProduct){
           product.addEventListener('click',(e)=>{
             const deletedProductId = e.target.parentElement.childNodes[3].innerHTML
+            let productPrice = (e.target.parentElement.parentElement.parentElement.getElementsByClassName('Price')[0].innerHTML)
+            productPrice = (parseInt(productPrice.split(' ')[1]))
+            totalPrice -= (productPrice/2)
             e.target.parentElement.parentElement.parentElement.remove()
             removeProductFromCart(parseInt(deletedProductId))
-            // try to count the db index in the cartProducts object store 
-            // cartCounter.innerHTML = cartProductsCounter-- 
-            // location.reload()
             let  transaction = db.transaction('cartProducts', 'readonly');
-            var objectStore = transaction.objectStore('cartProducts');
-            var countRequest = objectStore.count();
+            let objectStore = transaction.objectStore('cartProducts');
+            let countRequest = objectStore.count();
             countRequest.onsuccess = function() {
-              console.log(countRequest.result);
               cartCounter.innerHTML = countRequest.result
-
-}
+            }
+            subTotalPrice.innerHTML = `Sub-Total: EGP ${totalPrice}`
           })
         }
-
-    }
+      }
 }
 
 displayCartProducts()

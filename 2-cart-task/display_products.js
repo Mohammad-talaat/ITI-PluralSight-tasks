@@ -9,7 +9,6 @@ async function fetchData(){
     displayedItemContainer.innerHTML=''
     for (const product of products) {
         displayedItemContainer.innerHTML += `
-        
         <div class="card col p-3 m-2" style="width: 16rem;">
             <img src="${product.image}"  style="width:200px;height:200px;">
             <div class="card-body row align-content-end">
@@ -49,7 +48,6 @@ async function fetchData(){
 
 }
 fetchData()
-
 
 
 function createDB (dbName,dbVersion){
