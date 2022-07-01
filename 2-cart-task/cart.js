@@ -1,9 +1,11 @@
-const cartItemsContainer = document.getElementsByClassName('cartItemsContainer')[0]
-const cartCounter = document.getElementById('cartCounter')
-const subTotalPrice = document.getElementsByClassName('subTotalPrice')[0]
-
+const cartItemsContainer = document.getElementsByClassName('cartItemsContainer')[0];
+const cartCounter = document.getElementById('cartCounter');
+const subTotalPrice = document.getElementsByClassName('subTotalPrice')[0];
+const emptyCartEl = document.createElement('h5')
+emptyCartEl.innerHTML = 'The Shopping Cart is currently empty!'
+// cartItemsContainer.append(emptyCartEl)
 let totalPrice = 0;
-cartItemsContainer.innerHTML = ''
+// cartItemsContainer.innerHTML = ''
 async function displayCartProducts(){
     connectDataBase('Online Store',1);
 }
@@ -16,7 +18,18 @@ function connectDataBase(dbName,dbVersion){
 
         request.onsuccess = e => {
             db = e.target.result
-            showAllProducts('cartProducts')
+            let  transaction = db.transaction('cartProducts', 'readonly');
+            let objectStore = transaction.objectStore('cartProducts');
+            let countRequest = objectStore.count();
+            countRequest.onsuccess = function() {
+              cartCounter.innerHTML = countRequest.result
+              // console.log(`hi `+countRequest.result)
+              if(countRequest.result != '0'){
+                // console.log(`this is from the if condition if the cart counter is 0`)
+              //  cartItemsContainer.append(emptyCartEl)
+              showAllProducts('cartProducts')
+              }
+            }
         }
 
         request.onerror = e => console.log(`This error is due to ${e.target.error}`)
@@ -34,6 +47,7 @@ function showAllProducts (dbStore){
     const transactions = db.transaction(dbStore,'readonly') 
     const dbObjectStore = transactions.objectStore(dbStore)
     const request = dbObjectStore.openCursor()
+    cartItemsContainer.innerHTML = ''
     request.onsuccess = e => {
         const cursor = e.target.result
         if (cursor){
@@ -55,8 +69,6 @@ function showAllProducts (dbStore){
                         <span class='Price'>EGP ${Math.round(product.price * 18)}</span>
                       </h5>
                       <p class="card-text">${product.description}</p>
-                      
-                      
                     </div>
                   </div>
                 </div>
@@ -83,6 +95,11 @@ function showAllProducts (dbStore){
             let countRequest = objectStore.count();
             countRequest.onsuccess = function() {
               cartCounter.innerHTML = countRequest.result
+              // console.log(`hi `+countRequest.result)
+              if(countRequest.result == '0'){
+                // console.log(`this is from the if condition if the cart counter is 0`)
+               cartItemsContainer.append(emptyCartEl)
+              }
             }
             subTotalPrice.innerHTML = `Sub-Total: EGP ${totalPrice}`
           })
