@@ -2,27 +2,3 @@ mat-grid-tile {
   background: rgb(217, 209, 227);
 }
 
-.example-card {
-  max-width: 200px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
-  background-color: #18c8ec2a;
-  padding: 10px;
-  grid-gap: 10px;
-  justify-content: center;
-}
-.grid-item {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-}
