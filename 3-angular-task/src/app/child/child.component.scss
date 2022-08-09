@@ -21,4 +21,15 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  display: grid;
+  grid-template-rows: repeat(auto-fill,125px);
+}
+
+.button-position{
+  margin:10px;
+}
+
+button{
+  color:rgb(0, 0, 0);
+  background-color: rgba(7, 179, 214, 0.413);
 }

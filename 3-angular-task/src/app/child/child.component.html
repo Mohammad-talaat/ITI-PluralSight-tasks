@@ -13,9 +13,8 @@
           bred for hunting.
         </p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button >SHARE</button>
+      <mat-card-actions  class="button-position">
+        <button  mat-button (click)="emitEvent($event)">Click to output to parent</button>
       </mat-card-actions>
   </mat-card>
 </div>
